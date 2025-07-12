@@ -3,6 +3,8 @@ package com.AiChatApplication.service.impl;
 import com.AiChatApplication.service.ChatService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ChatClientResponse;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -18,8 +20,11 @@ public class ChatServiceImpl implements ChatService {
     private final ChatClient chatClient;
 
     @Autowired
-    public ChatServiceImpl(OpenAiChatModel openAiChatModel) {
-        this.chatClient = ChatClient.create(openAiChatModel);
+    public ChatServiceImpl(OpenAiChatModel openAiChatModel,ChatClient.Builder chatClientBuilder) {
+        //adding memory to the chat
+        this.chatClient = chatClientBuilder
+                .defaultAdvisors(new MessageChatMemoryAdvisor(new InMemoryChatMemory()))
+                .build();
         this.chatModel = openAiChatModel;
     }
 
