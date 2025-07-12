@@ -19,7 +19,7 @@ public class GenAiController {
         this.imageService = imageService;
     }
 
-    @RequestMapping("/chat")
+    @RequestMapping("/chat-model")
     public String chat(@RequestParam String message) {
         return chatService.generateResponseOptions(message);
     }
@@ -29,4 +29,10 @@ public class GenAiController {
         return imageService.generateImage(prompt);
     }
 
+
+    //using chat client
+    @RequestMapping("/chat-client")
+    public String chatClient(@RequestParam String message) {
+        return chatService.chatClient(message);
+    }
 }
