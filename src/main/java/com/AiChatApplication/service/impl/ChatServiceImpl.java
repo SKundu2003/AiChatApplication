@@ -20,11 +20,14 @@ public class ChatServiceImpl implements ChatService {
     private final ChatClient chatClient;
 
     @Autowired
-    public ChatServiceImpl(OpenAiChatModel openAiChatModel,ChatClient.Builder chatClientBuilder) {
+    public ChatServiceImpl(OpenAiChatModel openAiChatModel
+//            ,ChatClient.Builder chatClientBuilder
+    ) {
         //adding memory to the chat
-        this.chatClient = chatClientBuilder
-                .defaultAdvisors(new MessageChatMemoryAdvisor(new InMemoryChatMemory()))
-                .build();
+//        this.chatClient = chatClientBuilder
+//                .defaultAdvisors(new MessageChatMemoryAdvisor(new InMemoryChatMemory()))
+//                .build();
+        this.chatClient = ChatClient.create(openAiChatModel);
         this.chatModel = openAiChatModel;
     }
 
