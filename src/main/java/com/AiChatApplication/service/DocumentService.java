@@ -10,4 +10,6 @@ import java.util.List;
 public interface DocumentService {
     void ingestDocument(Resource resource);
     List<Document> searchSimilar(String query);
+
+    String findAnswerFromDocumentViaRAG(String query);
 }

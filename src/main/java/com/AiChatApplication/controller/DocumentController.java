@@ -33,4 +33,10 @@ public class DocumentController {
     public List<Document> searchSimilar(@RequestParam String query) {
         return documentService.searchSimilar(query);
     }
+
+    @GetMapping("/answer")
+    public String findAnswerFromDocumentViaRAG(@RequestParam String query) {
+        System.err.println("findAnswerFromDocumentViaRAG");
+        return documentService.findAnswerFromDocumentViaRAG(query);
+    }
 }
