@@ -24,7 +24,7 @@ repositories {
 }
 
 ext {
-	set('springAiVersion', "1.0.0-M8")
+	set('springAiVersion', "1.0.0")
 }
 
 dependencies {
@@ -38,6 +38,11 @@ dependencies {
 
 	// Spring AI with Ollama
 	implementation 'org.springframework.ai:spring-ai-starter-model-ollama'
+
+	//implementing pgvector
+	implementation 'org.springframework.ai:spring-ai-starter-vector-store-pgvector'
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	developmentOnly 'org.springframework.ai:spring-ai-spring-boot-docker-compose'
 }
 
 dependencyManagement {
